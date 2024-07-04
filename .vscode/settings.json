@@ -1,5 +1,4 @@
 {
   "json.schemas": [],
-  "editor.formatOnSave": true,
-  "type": "module"
+  "editor.formatOnSave": true
 }
