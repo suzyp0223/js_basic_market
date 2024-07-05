@@ -1,9 +1,10 @@
 import { getProductSection } from "./module/productSection.js";
+import { fetchSectionListData } from "./module/fetch.js";
+
+const body = document.getElementsByTagName('body')[0];
 
 try {
-  const response = await fetch('public/mock/sectionListData.json');
-  const data = await response.json();
-  const sectionInfoList = data.sectionInfoList;
+  const sectionInfoList = await fetchSectionListData();
 
   sectionInfoList.forEach((sectionInfo) => {
     console.log(sectionInfo);

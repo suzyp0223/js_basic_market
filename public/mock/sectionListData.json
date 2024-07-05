@@ -1,8 +1,8 @@
 {
-  "sectionInfoList" : [
+  "sectionInfoList": [
     {
-      "sectionTitle" : "인기 상품",
-      "productList" : [
+      "sectionTitle": "인기 상품",
+      "productList": [
         {
           "id": 1,
           "imgSrc": "./public/assets/파프리카.jpg",
@@ -30,8 +30,8 @@
       ]
     },
     {
-      "sectionTitle" : "새로 들어온 상품",
-      "productList" : [
+      "sectionTitle": "새로 들어온 상품",
+      "productList": [
         {
           "id": 4,
           "imgSrc": "./public/assets/삼겹살.jpg",
@@ -55,7 +55,12 @@
           "discountPercent": 20,
           "price": 4800,
           "originalPrice": 6000
-        },
+        }
+      ]
+    },
+    {
+      "sectionTitle": "재구매율이 높은 상품",
+      "productList": [
         {
           "id": 7,
           "imgSrc": "./public/assets/키위.jpg",
@@ -71,6 +76,22 @@
           "discountPercent": 5,
           "price": 2700,
           "originalPrice": 3000
+        },
+        {
+          "id": 9,
+          "imgSrc": "./public/assets/식빵.jpg",
+          "name": "우유 토스트 식빵",
+          "discountPercent": 10,
+          "price": 3000,
+          "originalPrice": 3300
+        },
+        {
+          "id": 10,
+          "imgSrc": "./public/assets/파스타.jpg",
+          "name": "롱 파스타 면 2종",
+          "discountPercent": 5,
+          "price": 7600,
+          "originalPrice": 8000
         }
       ]
     }

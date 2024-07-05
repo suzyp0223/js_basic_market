@@ -1,26 +1,17 @@
-import { getProductCard } from './module/productCard.js';
+import { fetchSectionListData } from "./module/fetch.js"
+import { setButtonEvent } from "./module/productFilter.js";
+import { getProductList } from "./module/productList.js"
 
-const sectionDOM = document.getElementsByTagName('section')[0];
-const productCard = getProductCard({
-  "id": 2,
-  "imgSrc": "./public/assets/당근.jpg",
-  "name": "친환경 당근 400g",
-  "discountPercent": 33,
-  "price": 2000,
-  "originalPrice": 3000
-});
+// 물품 목록을 모두 불러와서 페이지에 띄우기
+const sectionInfoList = await fetchSectionListData();
 
-const productCard2 = getProductCard({
-  "id": 4,
-  "imgSrc": "./public/assets/삼겹살.jpg",
-  "name": "구이용 삼겹살 600g (냉장)",
-  "discountPercent": 5,
-  "price": 14820,
-  "originalPrice": 15600
-});
+const productList = sectionInfoList.reduce(
+  (prev, curr) => [...prev, ...curr.productList],
+  [],
+);
 
+const section = document.getElementsByTagName('section')[0];
+const productListDOM = getProductList(productList);
+section.appendChild(productListDOM);
 
-
-
-sectionDOM.appendChild(productCard);
-sectionDOM.appendChild(productCard2);
+setButtonEvent(productList);

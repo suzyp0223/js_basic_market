@@ -26,7 +26,7 @@ export const setPayInfo = () => {
   let totalPrice = 0;
 
 
-  //배열을 reduce() 매서드로 하나씩 더함.
+  //배열을 reduce() 매서드로 하나씩 더함.           인자=(리듀스함수, 초기화값)
   const { originalPrice, discountPrice } = cartInfoList.reduce((prev, curr) => ({
     originalPrice: prev.originalPrice + curr.originalPrice,
     discountPrice: prev.discountPrice + (curr.originalPrice - curr.price),
