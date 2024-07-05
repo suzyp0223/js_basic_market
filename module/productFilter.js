@@ -84,9 +84,12 @@ export const setFilterEvent = () => {
     const result = Number(value);
     if (isNaN(result)) {
       alert("숫자를 입력해주세요");
+      event.target.value = 0;
+      return;
     }
     if (result > 100 || result < 0) {
       alert("0 이상 100 이하의 숫자를 입력해주세요.");
+      event.target.value = 0;
       return;
     }
 
