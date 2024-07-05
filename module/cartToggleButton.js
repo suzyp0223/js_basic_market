@@ -2,11 +2,11 @@ import { makeDOMwithProperties } from "../utils/dom.js";
 import { CART_COOKIE_KEY } from "../constants/cart.js";
 
 
-
+export const getCartInfo = () => JSON.parse(localStorage.getItem(CART_COOKIE_KEY)) || [];
 
 const isInCart = ({ id }) => {
   // 현재 해당 상품이 장바구니 안에 있는지를 판단하여 결과를 반환
-  const originalCartInfo = JSON.parse(localStorage.getItem(CART_COOKIE_KEY)) || [];  //getItem이 string이라 JSON.parse로 객체로만듬
+  const originalCartInfo = getCartInfo();  //getItem이 string이라 JSON.parse로 객체로만듬
   // Array.find
   return !!originalCartInfo.find((cartInfo) => cartInfo.id === id);
 
@@ -15,7 +15,7 @@ const isInCart = ({ id }) => {
 const addCartInfo = (productInfo) => {
 
   // 장바구니에 해당 물품의 정보를 저장
-  const originalCartInfo = JSON.parse(localStorage.getItem(CART_COOKIE_KEY)) || [];  //getItem이 string이라 JSON.parse로 객체로만듬
+  const originalCartInfo = getCartInfo();  //getItem이 string이라 JSON.parse로 객체로만듬
 
   //동일물건 저장X 기능
   if (originalCartInfo.findIndex((cartInfo) => cartInfo.id === productInfo.id) !== -1) return;
@@ -29,7 +29,7 @@ const addCartInfo = (productInfo) => {
 
 const removeCartInfo = ({ id }) => {
   //장바구니에서 해당 물품의 정보를 삭제
-  const originalCartInfo = JSON.parse(localStorage.getItem(CART_COOKIE_KEY)) || [];
+  const originalCartInfo = getCartInfo();
 
   // const newCartInfo = originalCartInfo.filter((cartInfo) => {
   //   return cartInfo.id !== id;   // {return } -> 축약해서 ()만으로 사용가능.
@@ -41,7 +41,7 @@ const removeCartInfo = ({ id }) => {
   localStorage.setItem(CART_COOKIE_KEY, JSON.stringify(newCartInfo));
 };
 
-export const getCartToggleButton = (productInfo) => {
+export const getCartToggleButton = (productInfo, removeCartCallback) => {
   let inCart = isInCart(productInfo);
   const cartToggleBtn = makeDOMwithProperties('button', {
     className: 'cart-toggle-btn',
@@ -52,6 +52,7 @@ export const getCartToggleButton = (productInfo) => {
 
         removeCartInfo(productInfo);
         cartImage.src = './public/assets/cart.png';
+        removeCartCallback?.();
       } else {  // 장바구니에 x -> 장바구니에 넣기
         addCartInfo(productInfo);
         cartImage.src = './public/assets/cartDisabled.png';

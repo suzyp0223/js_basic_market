@@ -1,7 +1,7 @@
 import { makeDOMwithProperties } from "../utils/dom.js";
 import { getProductCard } from "./productCard.js";
 
-export const getProductList = (productInfoList) => {
+export const getProductList = (productInfoList, removeCartCallback) => {
   if (productInfoList == null || !Array.isArray(productInfoList)) return;
   
   const productlistContainer = makeDOMwithProperties('div', {
@@ -12,7 +12,7 @@ export const getProductList = (productInfoList) => {
     productlistContainer.appendChild(
       getProductCard({
         ...productInfo, // spred 문법 - 객체 프로퍼티 하나씩 가져와서 객체형태로 뿌려준다.
-      })
+      }, removeCartCallback)
     );
   })
 
